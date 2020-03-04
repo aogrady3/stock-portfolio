@@ -25,7 +25,7 @@ const AuthForm = props => {
           <Form.Field label="Password" />
           <input name="password" type="password" />
         </div>
-        <div style={{textAlign: 'center'}}>
+        <div style={{textAlign: 'center', marginTop: '10px'}}>
           <Button color="green" type="submit">
             {displayName}
           </Button>
