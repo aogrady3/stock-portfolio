@@ -14,22 +14,26 @@ const AuthForm = props => {
   return (
     <div className="center">
       <Form onSubmit={handleSubmit} name={name}>
-        <Header as="h1" textAlign="center">
-          Please {displayName}
-        </Header>
+        <h1 style={{textAlign: 'center'}}>Please {displayName}</h1>
+        {name === 'signup' ? (
+          <div>
+            <Form.Field label="Full Name" />
+            <input name="Name" type="text" />
+          </div>
+        ) : (
+          ''
+        )}
         <div>
           <Form.Field label="Email" />
           <input name="email" type="text" />
         </div>
-        <div>
+        <div style={{marginBottom: '10px'}}>
           <Form.Field label="Password" />
           <input name="password" type="password" />
         </div>
-        <div style={{textAlign: 'center', marginTop: '10px'}}>
-          <Button color="green" type="submit">
-            {displayName}
-          </Button>
-        </div>
+        <Button color="green" type="submit">
+          {displayName}
+        </Button>
         <Divider />
         {name === 'login' ? (
           <div style={{justifyContent: 'center', textAlign: 'center'}}>
@@ -51,7 +55,9 @@ const AuthForm = props => {
           </div>
         )}
         {error &&
-          error.response && <Header as="h3"> {error.response.data} </Header>}
+          error.response && (
+            <h3 style={{textAlign: 'center'}}> {error.response.data} </h3>
+          )}
       </Form>
     </div>
   )
