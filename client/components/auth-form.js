@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
-import {Button, Header, Form, Container, Grid} from 'semantic-ui-react'
+import {Button, Header, Form, Container, Divider} from 'semantic-ui-react'
 
 /**
  * COMPONENT
@@ -12,54 +12,47 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div className="auth-form">
-      <Container>
-        <Grid>
-          <Grid.Row centered>
-            <Grid.Column width={6}>
-              <Form onSubmit={handleSubmit} name={name}>
-                <Header as="h1">Please {displayName}</Header>
-                <div>
-                  <Form.Field label="Email" />
-                  <input name="email" type="text" />
-                </div>
-                <div>
-                  <Form.Field label="Password" />
-                  <input name="password" type="password" />
-                </div>
-                <div>
-                  <Button color="green" type="submit">
-                    {displayName}
-                  </Button>
-                </div>
-                {name === 'login' ? (
-                  <Container>
-                    <Header as="h3">
-                      Don't Have an Account? Click Below to Sign Up!
-                    </Header>
-                    <Link to="/signup">
-                      <Button color="blue">Sign Up</Button>
-                    </Link>
-                  </Container>
-                ) : (
-                  <Container>
-                    <Header as="h3">
-                      Already Have an Account? Click to Log Back In!
-                    </Header>
-                    <Link to="/login">
-                      <Button color="blue">Login</Button>
-                    </Link>
-                  </Container>
-                )}
-                {error &&
-                  error.response && (
-                    <Header as="h3"> {error.response.data} </Header>
-                  )}
-              </Form>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
+    <div className="center">
+      <Form onSubmit={handleSubmit} name={name}>
+        <Header as="h1" textAlign="center">
+          Please {displayName}
+        </Header>
+        <div>
+          <Form.Field label="Email" />
+          <input name="email" type="text" />
+        </div>
+        <div>
+          <Form.Field label="Password" />
+          <input name="password" type="password" />
+        </div>
+        <div style={{textAlign: 'center'}}>
+          <Button color="green" type="submit">
+            {displayName}
+          </Button>
+        </div>
+        <Divider />
+        {name === 'login' ? (
+          <div style={{justifyContent: 'center', textAlign: 'center'}}>
+            <Header as="h3">
+              Don't Have an Account? Click Below to Sign Up!
+            </Header>
+            <Link to="/signup">
+              <Button color="blue">Sign Up</Button>
+            </Link>
+          </div>
+        ) : (
+          <div style={{justifyContent: 'center', textAlign: 'center'}}>
+            <Header as="h3">
+              Already Have an Account? Click to Log Back In!
+            </Header>
+            <Link to="/login">
+              <Button color="blue">Login</Button>
+            </Link>
+          </div>
+        )}
+        {error &&
+          error.response && <Header as="h3"> {error.response.data} </Header>}
+      </Form>
     </div>
   )
 }
