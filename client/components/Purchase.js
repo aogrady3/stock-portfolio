@@ -2,6 +2,7 @@ import React from 'react'
 import {Button, Header, Form, Divider} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {buyStock} from '../store/transactions'
+import {me} from '../store/user'
 
 class Purchase extends React.Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class Purchase extends React.Component {
   }
 
   handleSumbit(event) {
-    event.preventDefault()
     const total = this.state.sharesPurchased * 100
 
     if (total > this.props.userBank) {
@@ -41,6 +41,7 @@ class Purchase extends React.Component {
       }
 
       this.props.buyStock(obj)
+
       this.setState({
         stockSymbol: '',
         sharesPurchased: 0,
@@ -53,7 +54,7 @@ class Purchase extends React.Component {
   render() {
     return (
       <div className="purchase-container">
-        <h2>Current Ammount: ${this.props.userBank}</h2>
+        <h2>Current Amount: ${this.props.userBank}</h2>
         <input
           placeholder="Enter a Stock Symbol"
           name="stockSymbol"
@@ -86,7 +87,8 @@ const mapState = state => {
 
 const mapDisptach = dispatch => {
   return {
-    buyStock: obj => dispatch(buyStock(obj))
+    buyStock: obj => dispatch(buyStock(obj)),
+    updateBank: () => dispatch(me())
   }
 }
 

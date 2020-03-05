@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {me} from './user'
 
 /**
  * ACTION TYPES
@@ -56,6 +57,7 @@ export const getPortfolio = () => async dispatch => {
 export const buyStock = obj => async dispatch => {
   try {
     await axios.post('/api/transactions', obj)
+    dispatch(me())
     dispatch(getPortfolio())
   } catch (err) {
     console.error(err)
