@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Transaction} = require('../db/models')
+const {User} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -21,6 +22,18 @@ router.post('/', async (req, res, next) => {
   if (req.user) {
     try {
       const transaction = await Transaction.create(req.body)
+      const user = await User.findOne({
+        where: {
+          id: req.user.id
+        }
+      })
+
+      console.log(user)
+
+      user.update({
+        ammount: user.ammount - transaction.amountPaid
+      })
+      console.log(user)
       res.json(transaction)
     } catch (err) {
       next(err)

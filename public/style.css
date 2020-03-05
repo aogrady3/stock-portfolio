@@ -68,8 +68,10 @@ label {
 }
 
 .vl {
-  border-left: 6px solid green;
-  margin: 0;
+  border-left: 3px solid #2c353a;
+  opacity: 80%;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .column1 {
