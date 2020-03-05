@@ -10,7 +10,6 @@ class Purchase extends React.Component {
       stockSymbol: '',
       sharesPurchased: 0,
       stockName: 'Apple',
-      amountPaid: 0,
       userId: this.props.userId
     }
     this.handleSumbit = this.handleSumbit.bind(this)
@@ -18,26 +17,34 @@ class Purchase extends React.Component {
 
   handleSumbit(event) {
     event.preventDefault()
-    this.setState({
-      amountPaid: this.state.sharesPurchased * 100
-    })
+    const total = this.state.sharesPurchased * 100
 
-    if (this.state.amountPaid < this.props.userBank) {
+    if (total > this.props.userBank) {
       this.setState({
         error: 'Not Enough Funds'
       })
     } else if (
       this.state.sharesPurchased <= 0 ||
-      this.state.sharesPurchased % 1
+      this.state.sharesPurchased % 1 ||
+      !parseInt(this.state.sharesPurchased)
     ) {
       this.setState({
         error: 'Stock purchases should be greater than zero and whole numbers'
       })
     } else {
-      this.props.buyStock(this.state)
+      let obj = {
+        stockSymbol: this.state.stockSymbol.toUpperCase(),
+        sharesPurchased: this.state.sharesPurchased,
+        stockName: this.state.stockName,
+        userId: this.state.userId,
+        amountPaid: total
+      }
+
+      this.props.buyStock(obj)
       this.setState({
         stockSymbol: '',
         sharesPurchased: 0,
+        amountPaid: 0,
         error: ''
       })
     }

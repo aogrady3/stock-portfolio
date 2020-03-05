@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Divider, Grid, Image, Segment} from 'semantic-ui-react'
+import {Divider, Grid, Image, Segment, Header} from 'semantic-ui-react'
 import Purchase from './Purchase'
 import {getPortfolio} from '../store/transactions'
 
@@ -32,6 +32,7 @@ class UserHome extends React.Component {
     return (
       <div className="home-container">
         <div className="column1">
+          {!portfolio.length ? <Header>There's nothing here...</Header> : ''}
           {portfolio.map(stock => {
             const {id, stockSymbol, shares, amount} = stock //destructuring
             return (
