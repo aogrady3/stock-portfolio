@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Divider, Grid, Image, Segment} from 'semantic-ui-react'
+import Purchase from './Purchase'
 
 /**
  * COMPONENT
@@ -43,9 +44,7 @@ class UserHome extends React.Component {
         </div>
         <div className="vl" />
         <div className="column2">
-          <table id="stocks">
-            <tbody>{this.renderTableData()}</tbody>
-          </table>
+          <Purchase />
         </div>
       </div>
     )
