@@ -59,3 +59,34 @@ label {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+/* Home Page CSS */
+.home-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.vl {
+  border-left: 6px solid green;
+  margin: 0;
+}
+
+.column1 {
+  margin-left: 15%;
+  margin-right: 0;
+  width: 50%;
+}
+
+.column2 {
+  margin-left: 0%;
+  margin-right: 15%;
+  width: 50%;
+}
+
+.single-stock {
+  display: flex;
+  justify-content: space-between;
+  margin: 10%;
+  font-size: 175%;
+}
