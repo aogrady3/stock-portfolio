@@ -8,6 +8,13 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+  name: {
+    type: Sequelize.STRING
+  },
+  ammount: {
+    type: Sequelize.FLOAT,
+    defaultValue: 5000.0
+  },
   password: {
     type: Sequelize.STRING,
 

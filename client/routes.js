@@ -17,19 +17,26 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+      <React.Fragment>
+        {!isLoggedIn && (
+          <Switch>
+            {/* Routes placed here are available to all visitors */}
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+
+            {/* Displays Signup component as a fallback */}
+            <Route component={Signup} />
+          </Switch>
+        )}
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route component={UserHome} />
           </Switch>
         )}
-        {/* Displays Login component as a fallback */}
-        <Route component={Signup} />
-      </Switch>
+      </React.Fragment>
     )
   }
 }

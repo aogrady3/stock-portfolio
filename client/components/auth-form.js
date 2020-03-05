@@ -3,14 +3,13 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import {Link} from 'react-router-dom'
-import {Button, Header, Form, Container, Divider} from 'semantic-ui-react'
+import {Button, Header, Form, Divider} from 'semantic-ui-react'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
   return (
     <div className="center">
       <Form onSubmit={handleSubmit} name={name}>

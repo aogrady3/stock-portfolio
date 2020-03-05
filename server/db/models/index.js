@@ -1,18 +1,21 @@
 const User = require('./user')
+const Transaction = require('./transaction')
+const Portfolio = require('./portfolio')
 
 /**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
+ * Define relationships here, and export for use.
  */
 
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
+//  One to Many relationshipts
+Transaction.belongsTo(User)
+User.hasMany(Transaction)
+
+//One to Many relationship
+Portfolio.belongsTo(User)
+User.hasMany(Portfolio)
+
 module.exports = {
-  User
+  User,
+  Transaction,
+  Portfolio
 }
