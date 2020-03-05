@@ -1,6 +1,6 @@
 body,
 html {
-  font-family: sans-serif;
+  font-family: 'Avenir Next';
 }
 
 a {
@@ -10,11 +10,41 @@ a {
 label {
   display: block;
 }
-
-nav a {
-  display: inline-block;
-  margin: 1em;
+/* Navbar CSS */
+.navbar h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 175%;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  background: #2c353a;
+  opacity: 80%;
+  color: white;
+}
+
+.navbar-links {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navbar-links a {
+  color: white;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+  color: white;
+}
+/* Form (Login/SignUp) CSS */
 
 .center {
   height: 200px;

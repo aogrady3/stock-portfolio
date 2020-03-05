@@ -16,3 +16,14 @@ router.get('/', async (req, res, next) => {
     }
   }
 })
+
+router.post('/', async (req, res, next) => {
+  if (req.user) {
+    try {
+      const transaction = await Transaction.create(req.body)
+      res.json(transaction)
+    } catch (err) {
+      next(err)
+    }
+  }
+})
