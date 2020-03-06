@@ -6,6 +6,7 @@ import {me} from './user'
  * ACTION TYPES
  */
 const GET_PORTFOLIO = 'GET_PORTFOLIO'
+const GET_TRANSACTIONS = 'GET_TRANSACTIONS'
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const defaultTransactions = {
  * ACTION CREATORS
  */
 const gotPortfolio = portfolio => ({type: GET_PORTFOLIO, portfolio})
+const gotTransactions = trans => ({type: GET_TRANSACTIONS, trans})
 
 /**
  * THUNK CREATORS
@@ -64,6 +66,16 @@ export const buyStock = obj => async dispatch => {
   }
 }
 
+export const getAllTransactions = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/transactions')
+    console.log(res.data)
+    dispatch(gotTransactions(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -71,6 +83,8 @@ export default function(state = defaultTransactions, action) {
   switch (action.type) {
     case GET_PORTFOLIO:
       return {...state, portfolio: action.portfolio}
+    case GET_TRANSACTIONS:
+      return {...state, allTransactions: action.trans}
     default:
       return state
   }

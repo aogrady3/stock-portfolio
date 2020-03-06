@@ -11,13 +11,16 @@ class Purchase extends React.Component {
       stockSymbol: '',
       sharesPurchased: 0,
       stockName: 'Apple',
+      stockPriceAtPurchase: 100,
       userId: this.props.userId
     }
     this.handleSumbit = this.handleSumbit.bind(this)
   }
 
   handleSumbit(event) {
-    const total = this.state.sharesPurchased * 100
+    const total =
+      parseInt(this.state.sharesPurchased) * this.state.stockPriceAtPurchase
+    console.log(total)
 
     if (total > this.props.userBank) {
       this.setState({
@@ -37,7 +40,8 @@ class Purchase extends React.Component {
         sharesPurchased: this.state.sharesPurchased,
         stockName: this.state.stockName,
         userId: this.state.userId,
-        amountPaid: total
+        amountPaid: total,
+        stockPriceAtPurchase: this.state.stockPriceAtPurchase
       }
 
       this.props.buyStock(obj)

@@ -98,3 +98,8 @@ label {
 
 .purchase-container {
 }
+
+/* Transactions style */
+.column3 {
+  width: 50%;
+}
