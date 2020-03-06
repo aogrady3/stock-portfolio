@@ -1,6 +1,14 @@
 import axios from 'axios'
 import history from '../history'
 import {me} from './user'
+import {key} from '../../secrets'
+
+function apiCall(symbol) {
+  return (
+    `https://cloud.iexapis.com/stable/stock/${symbol}/batch?types=quote&token=` +
+    key
+  )
+}
 
 /**
  * ACTION TYPES
@@ -43,11 +51,16 @@ export const getPortfolio = () => async dispatch => {
     let result = []
     let i = 0
     for (let key in hash) {
+      let stock = await axios.get(apiCall(key))
+      let amount = stock.data.quote.latestPrice * hash[key]
+      let change = stock.data.quote.change
+
       result.push({
         id: `${i++}`,
         stockSymbol: `${key}`,
         shares: `${hash[key]}`,
-        amount: 2000
+        amount: amount.toFixed(2),
+        change: change
       })
     }
     dispatch(gotPortfolio(result))

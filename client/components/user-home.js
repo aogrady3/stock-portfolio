@@ -7,15 +7,19 @@ import {getPortfolio} from '../store/transactions'
 import {key} from '../../secrets'
 import Axios from 'axios'
 
-/**
- * COMPONENT
- */
+function apiCall(symbol) {
+  return (
+    `https://cloud.iexapis.com/stable/stock/${symbol}/batch?types=quote&token=` +
+    key
+  )
+}
 
 class UserHome extends React.Component {
   constructor(props) {
     super(props)
   }
-  async componentDidMount() {
+
+  componentDidMount() {
     this.props.getPortfolio()
   }
 
@@ -26,14 +30,20 @@ class UserHome extends React.Component {
         <div className="column1">
           {!portfolio.length ? <Header>There's nothing here...</Header> : ''}
           {portfolio.map(stock => {
-            const {id, stockSymbol, shares, amount} = stock //destructuring
+            const {id, stockSymbol, shares, amount, change} = stock //destructuring
+            let color = 'green'
+            if (change < 0) {
+              color = 'red'
+            }
             return (
               <React.Fragment key={id}>
                 <div className="single-stock">
                   <div>
                     {stockSymbol} - {shares} shares
                   </div>
-                  <div>{amount}</div>
+                  <div style={{color: color}}>
+                    ${amount} ({change})
+                  </div>
                 </div>
                 <hr />
               </React.Fragment>
