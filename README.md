@@ -25,6 +25,7 @@ This application was written in both Javascript and Node.js. The following techn
 * CSS
 * HTML
 * Passport.js
+* IEX Cloud (for Stock API)
 
 ## Author
 
