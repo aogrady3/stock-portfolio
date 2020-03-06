@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 import {Header} from 'semantic-ui-react'
 import Purchase from './Purchase'
 import {getPortfolio} from '../store/transactions'
+import {key} from '../../secrets'
+import Axios from 'axios'
 
 /**
  * COMPONENT
@@ -13,7 +15,7 @@ class UserHome extends React.Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.props.getPortfolio()
   }
 

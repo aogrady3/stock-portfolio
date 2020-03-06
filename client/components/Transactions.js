@@ -32,7 +32,7 @@ class Transactions extends React.Component {
                   <div>
                     BUY ({stockSymbol}) @ {sharesPurchased} shares
                   </div>
-                  <div>{stockPriceAtPurchase}</div>
+                  <div>${stockPriceAtPurchase.toFixed(2)}</div>
                 </div>
                 <hr />
               </React.Fragment>
