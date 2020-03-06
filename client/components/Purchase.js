@@ -18,7 +18,7 @@ class Purchase extends React.Component {
     super(props)
     this.state = {
       stockSymbol: '',
-      sharesPurchased: 0,
+      sharesPurchased: '',
       stockName: '',
       stockPriceAtPurchase: 0,
       userId: this.props.userId
@@ -64,7 +64,7 @@ class Purchase extends React.Component {
 
         this.setState({
           stockSymbol: '',
-          sharesPurchased: 0,
+          sharesPurchased: '',
           amountPaid: 0,
           error: ''
         })
@@ -82,24 +82,26 @@ class Purchase extends React.Component {
     return (
       <div className="purchase-container">
         <h2>Current Amount: ${this.props.userBank.toFixed(2)}</h2>
-        <input
-          placeholder="Enter a Stock Symbol"
-          name="stockSymbol"
-          type="text"
-          value={this.state.stockSymbol}
-          onChange={evt => this.setState({stockSymbol: evt.target.value})}
-        />
-        <input
-          placeholder="Enter Amount"
-          name="sharesPurchased"
-          type="integer"
-          value={this.state.sharesPurchased}
-          onChange={evt => this.setState({sharesPurchased: evt.target.value})}
-        />
-        <Button onClick={this.handleSumbit} color="green">
-          Purchase
-        </Button>
-        {this.state.error ? <Header as="h4">{this.state.error}</Header> : ''}
+        <div className="purchase-input">
+          <input
+            placeholder="Enter a Stock Symbol"
+            name="stockSymbol"
+            type="text"
+            value={this.state.stockSymbol}
+            onChange={evt => this.setState({stockSymbol: evt.target.value})}
+          />
+          <input
+            placeholder="Enter Amount"
+            name="sharesPurchased"
+            type="integer"
+            value={this.state.sharesPurchased}
+            onChange={evt => this.setState({sharesPurchased: evt.target.value})}
+          />
+          <Button onClick={this.handleSumbit} color="green">
+            Purchase
+          </Button>
+          {this.state.error ? <Header as="h4">{this.state.error}</Header> : ''}
+        </div>
       </div>
     )
   }

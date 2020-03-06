@@ -96,7 +96,16 @@ label {
 
 /* Purchase style */
 
-.purchase-container {
+.purchase-input {
+  display: flex;
+  flex-direction: column;
+}
+.purchase-input input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 /* Transactions style */
