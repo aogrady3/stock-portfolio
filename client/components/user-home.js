@@ -4,15 +4,6 @@ import {connect} from 'react-redux'
 import {Header} from 'semantic-ui-react'
 import Purchase from './Purchase'
 import {getPortfolio} from '../store/transactions'
-import {key} from '../../secrets'
-import Axios from 'axios'
-
-function apiCall(symbol) {
-  return (
-    `https://cloud.iexapis.com/stable/stock/${symbol}/batch?types=quote&token=` +
-    key
-  )
-}
 
 class UserHome extends React.Component {
   constructor(props) {
